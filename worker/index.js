@@ -1,3 +1,4 @@
+import { seoResponse } from "./seo.js"
 // Cloudflare Worker entry. Static files and the SPA fallback are served by the assets binding.
 // Only /api/* and /go/* reach this Worker (see run_worker_first in wrangler.jsonc).
 // The handlers in /api were written for Vercel (req, res), so a tiny shim adapts them.
@@ -49,6 +50,8 @@ export default {
     if (env?.NOTION_TOKEN && !process.env.NOTION_TOKEN) process.env.NOTION_TOKEN = env.NOTION_TOKEN
 
     const url = new URL(request.url)
+    const seo = await seoResponse(url, env)
+    if (seo) return seo
     const query = Object.fromEntries(url.searchParams)
 
     if (url.pathname.startsWith("/go/")) {
