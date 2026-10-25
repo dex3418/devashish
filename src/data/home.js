@@ -25,13 +25,13 @@ export const ventures = [
   {
     name: "Novaforge Labs",
     text: "Practical AI, embedded systems and agentic AI training for polytechnic and tier-3 college students.",
-    href: "https://nflabsite.vercel.app",
+    href: "https://novaforge.nflabs.workers.dev/",
     accent: "var(--cyan)",
   },
   {
     name: "Vouchr",
     text: "A hyperlocal network that connects job seekers, skill learners and businesses across Dantewada, Sukma and Bijapur.",
-    href: "https://vouchr-by-nflabs.vercel.app/",
+    href: "https://vouchr-cf.nflabs.workers.dev/",
     accent: "var(--vouchr-gradient)",
   },
 ]
