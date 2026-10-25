@@ -72,7 +72,7 @@ export function send(res, data) {
 
 export function fail(res, err) {
   console.error(err)
-  res.status(500).json({ error: "Could not load content" })
+  res.status(500).json({ error: "Could not load content", detail: String(err?.message || err).slice(0, 200) })
 }
 
 // Builds a simple list endpoint: published rows mapped to plain objects.
