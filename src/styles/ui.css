@@ -1,0 +1,60 @@
+/* Shared UI: prompts, headers, states, chips, row lists */
+.prompt { margin: 0 0 8px; font-family: var(--mono); font-size: 0.85rem; color: var(--text-dim); }
+.prompt__path { color: var(--cyan); }
+.prompt__sign { color: var(--vouchr-green); }
+
+.page-header { margin-bottom: 36px; }
+.page-header__title { font-size: clamp(1.8rem, 4.6vw, 3rem); line-height: 1.12; margin: 0 0 10px; }
+.page-header__text { color: var(--text-dim); margin: 0; max-width: 56ch; }
+
+.sec-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 22px; }
+.sec-head .prompt { margin-bottom: 6px; }
+.sec-head__title { margin: 0; font-size: clamp(1.3rem, 2.6vw, 1.8rem); line-height: 1.2; }
+.sec-head__all { font-family: var(--mono); font-size: 0.82rem; color: var(--cyan); white-space: nowrap; }
+.sec-head__all:hover { text-decoration: underline; }
+
+.state { padding: 24px; margin: 0; color: var(--text-dim); background: rgba(14, 22, 36, 0.72); border: 1px solid var(--glass-border); border-radius: var(--radius); }
+.chip { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 0.75rem; color: var(--text-dim); padding: 4px 10px; border: 1px solid var(--glass-border); border-radius: 999px; white-space: nowrap; }
+.chip__dot { width: 7px; height: 7px; border-radius: 50%; }
+
+/* Row lists: services and articles */
+.rows { overflow: hidden; }
+.row-item { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr) 150px; gap: 8px 28px; align-items: baseline; padding: 22px 26px; }
+.row-item + .row-item { border-top: 1px solid var(--glass-border); }
+.row-item--article { grid-template-columns: 110px minmax(0, 1fr) 90px; }
+.row__meta { text-align: right; }
+.row-item--link { transition: background 0.2s; }
+.row-item--link:hover { background: rgba(0, 194, 255, 0.06); }
+.row__title { margin: 0; font-size: 1.02rem; }
+.row__text { margin: 0; color: var(--text-dim); font-size: 0.93rem; }
+.row-item--article .row__text { margin-top: 4px; }
+.row__meta { font-family: var(--mono); font-size: 0.78rem; color: var(--cyan); white-space: nowrap; }
+.row__date { font-family: var(--mono); font-size: 0.78rem; color: var(--text-dim); }
+@media (max-width: 720px) {
+  .row-item, .row-item--article { grid-template-columns: 1fr; gap: 6px; padding: 18px 20px; }
+}
+
+/* Social links */
+.socials { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.socials a { display: inline-block; font-family: var(--mono); font-size: 0.78rem; color: var(--text-dim); padding: 6px 12px; border: 1px solid var(--glass-border); border-radius: 999px; transition: color 0.2s, border-color 0.2s; }
+.socials a:hover { color: var(--cyan); border-color: var(--cyan); }
+
+/* Page layout with a side panel */
+.with-aside { display: grid; grid-template-columns: minmax(0, 1fr) 270px; gap: 32px; align-items: start; }
+.with-aside__main { min-width: 0; }
+.aside { position: sticky; top: calc(var(--nav-h) + 28px); padding: 20px; display: grid; gap: 24px; }
+.aside__title { margin: 0 0 10px; font-family: var(--mono); font-size: 0.78rem; font-weight: 400; color: var(--text-dim); }
+.filterlist, .aside__links { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.filterlist button, .aside__links a { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 8px; font: inherit; font-size: 0.92rem; color: var(--text-dim); background: none; border: 0; border-radius: 8px; padding: 9px 12px; cursor: pointer; text-align: left; transition: background 0.2s, color 0.2s; }
+.filterlist button:hover, .aside__links a:hover { background: var(--glass-strong); color: var(--text); }
+.filterlist button[aria-pressed="true"] { background: rgba(0, 194, 255, 0.10); color: var(--cyan); }
+.filterlist__count { font-family: var(--mono); font-size: 0.78rem; }
+.aside .socials a { font-size: 0.74rem; }
+
+@media (max-width: 900px) {
+  .with-aside { grid-template-columns: 1fr; gap: 20px; }
+  .aside { position: static; order: -1; padding: 12px; }
+  .aside--desktop, .aside__section--extra, .aside__title { display: none; }
+  .filterlist, .aside__links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .filterlist button, .aside__links a { width: auto; border: 1px solid var(--glass-border); border-radius: 999px; padding: 7px 14px; }
+}

@@ -1,0 +1,71 @@
+/* Portfolio design tokens: near-black base, cyan core, Vouchr accents. */
+:root {
+  --bg-deep: #070b12;
+  --bg-mid: #0b1320;
+  --core: #22508a;
+  --slate: #3a82c4;
+  --cyan: #00c2ff;
+
+  /* Vouchr (from favicon). Hex values are close matches: swap if you have exact codes. */
+  --vouchr-magenta: #b83fd9;
+  --vouchr-green: #2ee86b;
+  --vouchr-cyan: #1fb6ff;
+  --vouchr-gradient: linear-gradient(90deg, var(--vouchr-magenta), var(--vouchr-cyan));
+
+  --text: #e6edf5;
+  --text-dim: #8ea0b4;
+
+  --glass: rgba(255, 255, 255, 0.04);
+  --glass-strong: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.09);
+  --glass-blur: blur(14px) saturate(130%);
+  --shadow: 0 10px 36px rgba(0, 0, 0, 0.45);
+
+  --radius: 14px;
+  --radius-sm: 10px;
+  --font: "Sora", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  --max: 1080px;
+  --nav-h: 60px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg-deep);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { font-family: var(--mono); font-weight: 500; letter-spacing: -0.02em; }
+a { color: inherit; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
+
+.glass {
+  background: rgba(14, 22, 36, 0.72);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+/* Real frosted blur only on the nav. Blur is expensive when animation runs behind it. */
+.glass--blur {
+  background: rgba(14, 22, 36, 0.55);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+}
+
+/* Larger screens: wider layout and slightly larger type. Phones are unchanged. */
+@media (min-width: 1200px) {
+  :root { --max: 1240px; --nav-h: 66px; }
+  html { font-size: 17px; }
+}
+@media (min-width: 1600px) {
+  :root { --max: 1440px; --nav-h: 72px; }
+  html { font-size: 18.5px; }
+}
