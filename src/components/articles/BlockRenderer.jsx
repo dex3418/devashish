@@ -6,7 +6,7 @@ function Rich({ parts }) {
     if (r.c) node = <code>{node}</code>
     if (r.b) node = <strong>{node}</strong>
     if (r.i) node = <em>{node}</em>
-    if (r.href) node = <a href={r.href} target="_blank" rel="noreferrer">{node}</a>
+    if (r.href) node = <a href={r.href} target="_blank" rel={/amazon[.]|amzn[.]/i.test(r.href) ? "noopener sponsored" : "noreferrer"}>{node}</a>
     return <Fragment key={i}>{node}</Fragment>
   })
 }
