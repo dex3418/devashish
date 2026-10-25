@@ -23,7 +23,7 @@ export async function seoResponse(url, env) {
   const site = (env.SITE_URL || url.origin).replace(/\/$/, "")
   const headers = { "Cache-Control": "public, max-age=3600" }
   if (url.pathname === "/robots.txt")
-    return new Response(`User-agent: *\nAllow: /\nDisallow: /api/\nDisallow: /go/\n\nSitemap: ${site}/sitemap.xml\n`, { headers: { ...headers, "Content-Type": "text/plain; charset=utf-8" } })
+    return new Response(`User-agent: *\nAllow: /\nDisallow: /go/\n\nSitemap: ${site}/sitemap.xml\n`, { headers: { ...headers, "Content-Type": "text/plain; charset=utf-8" } })
   if (url.pathname === "/sitemap.xml") {
     const paths = [...PAGES, ...(await articleSlugs(env)).map((s) => `/articles/${encodeURIComponent(s)}`)]
     const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${paths.map((p) => `  <url><loc>${site}${p}</loc></url>`).join("\n")}\n</urlset>\n`
